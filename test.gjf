@@ -1,0 +1,14 @@
+%chk=test.chk
+%mem=8GB
+%nprocshared=4
+
+#p opt freq b3lyp/6-31g(d) scrf=(smd,solvent=water) empiricaldispersion=gd3
+
+Test molecule
+
+0 1
+C 0.0 0.0 0.0
+H 1.09 0.0 0.0
+H -0.36 1.02 0.0
+H -0.36 -0.51 0.88
+H -0.36 -0.51 -0.88

@@ -1,0 +1,9 @@
+{
+  "project_name": "GJF Editor",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "Editor de Keywords Gaussian com interface wizard",
+  "version": "0.1.0",
+  "author_name": "Seu Nome",
+  "author_email": "seu.email@example.com",
+  "python_version": "3.12"
+}

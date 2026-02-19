@@ -1,0 +1,185 @@
+{
+  "categories": {
+    "calculation_type": {
+      "name": "Tipo de Cálculo",
+      "keywords": [
+        {"name": "opt", "description": "Otimização geométrica", "compatible_with": ["freq", "freq=noraman"]},
+        {"name": "freq", "description": "Cálculo de frequências vibracionais", "compatible_with": ["opt"]},
+        {"name": "freq=noraman", "description": "Frequências sem cálculo Raman", "compatible_with": ["opt"]},
+        {"name": "td", "description": "TD-DFT (Time-Dependent DFT)", "requires_parameters": true},
+        {"name": "cis", "description": "Configuration Interaction Singles"},
+        {"name": "mp2", "description": "Møller-Plesset perturbation theory 2nd order"},
+        {"name": "ccsd", "description": "Coupled Cluster Singles and Doubles"},
+        {"name": "ccsd(t)", "description": "CCSD with perturbative triples"}
+      ]
+    },
+    
+    "dft_methods": {
+      "name": "Métodos DFT",
+      "keywords": [
+        {"name": "b3lyp", "description": "B3LYP hybrid functional"},
+        {"name": "pbe0", "description": "PBE0 hybrid functional"},
+        {"name": "m06-2x", "description": "M06-2X meta-hybrid functional"},
+        {"name": "wb97xd", "description": "ωB97XD range-separated hybrid"},
+        {"name": "cam-b3lyp", "description": "CAM-B3LYP long-range corrected"},
+        {"name": "lc-wpbe", "description": "LC-ωPBE range-separated"},
+        {"name": "tpssh", "description": "TPSS hybrid meta-GGA"},
+        {"name": "pbe", "description": "PBE GGA functional"}
+      ]
+    },
+    
+    "semi_empirical": {
+      "name": "Métodos Semi-Empíricos",
+      "keywords": [
+        {"name": "pm3", "description": "PM3 semi-empirical method"},
+        {"name": "am1", "description": "AM1 semi-empirical method"},
+        {"name": "pm6", "description": "PM6 semi-empirical method"},
+        {"name": "pm7", "description": "PM7 semi-empirical method"},
+        {"name": "rm1", "description": "RM1 semi-empirical method"},
+        {"name": "mndo", "description": "MNDO semi-empirical method"}
+      ]
+    },
+    
+    "basis_sets": {
+      "name": "Conjuntos de Base",
+      "keywords": [
+        {"name": "6-31g", "description": "Base Pople padrão"},
+        {"name": "6-31g(d)", "description": "Base Pople com polarização"},
+        {"name": "6-31g(d,p)", "description": "Base Pople com polarização dupla"},
+        {"name": "6-311g", "description": "Base Pople tripla-zeta"},
+        {"name": "6-311g(d,p)", "description": "Base Pople tripla-zeta com polarização"},
+        {"name": "6-311+g(d,p)", "description": "Base Pople tripla-zeta com funções difusas"},
+        {"name": "6-311++g(d,p)", "description": "Base Pople tripla-zeta com funções difusas duplas"},
+        {"name": "cc-pvdz", "description": "Dunning cc-pVDZ"},
+        {"name": "cc-pvtz", "description": "Dunning cc-pVTZ"},
+        {"name": "cc-pvqz", "description": "Dunning cc-pVQZ"},
+        {"name": "aug-cc-pvdz", "description": "Dunning aug-cc-pVDZ com funções difusas"},
+        {"name": "def2-svp", "description": "Ahlrichs def2-SVP"},
+        {"name": "def2-tzvp", "description": "Ahlrichs def2-TZVP"},
+        {"name": "lanl2dz", "description": "LANL2DZ para metais pesados"}
+      ]
+    },
+    
+    "solvent_options": {
+      "name": "Opções de Solvente",
+      "keywords": [
+        {"name": "scrf", "description": "Solvent Reaction Field", "requires_parameters": true},
+        {"name": "pcm", "description": "Polarizable Continuum Model"},
+        {"name": "smd", "description": "Solvation Model based on Density"}
+      ]
+    },
+    
+    "dispersion": {
+      "name": "Correções de Dispersão",
+      "keywords": [
+        {"name": "empiricaldispersion", "description": "Correção empírica de dispersão", "requires_parameters": true},
+        {"name": "gd3", "description": "Grimme D3 dispersion"},
+        {"name": "gd3bj", "description": "Grimme D3 with BJ damping"}
+      ]
+    },
+    
+    "general_options": {
+      "name": "Opções Gerais",
+      "keywords": [
+        {"name": "nosymm", "description": "Desabilita uso de simetria"},
+        {"name": "guess", "description": "Guess inicial", "requires_parameters": true},
+        {"name": "geom", "description": "Opções de geometria", "requires_parameters": true},
+        {"name": "pop", "description": "Análise de população", "requires_parameters": true},
+        {"name": "density", "description": "Opções de densidade"},
+        {"name": "polar", "description": "Cálculo de polarizabilidade"},
+        {"name": "scf", "description": "Opções SCF", "requires_parameters": true},
+        {"name": "integral", "description": "Opções de integração"}
+      ]
+    },
+    
+    "properties": {
+      "name": "Propriedades",
+      "keywords": [
+        {"name": "nmr", "description": "Cálculo de RMN"},
+        {"name": "polar", "description": "Polarizabilidade"},
+        {"name": "hyperpolar", "description": "Hiperpolarizabilidade"},
+        {"name": "volume", "description": "Volume molecular"}
+      ]
+    }
+  },
+  
+  "common_parameters": {
+    "td": {
+      "template": "td=(nstates={nstates},root={root})",
+      "description": "TD-DFT parameters",
+      "defaults": {"nstates": 50, "root": 1},
+      "options": {
+        "nstates": ["10", "20", "30", "40", "50", "60", "70", "80", "90", "100"],
+        "root": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+      }
+    },
+    "scrf": {
+      "template": "scrf=(smd,solvent={solvent})",
+      "description": "Solvent parameters",
+      "defaults": {"smd": "", "solvent": "water"},
+      "options": {
+        "solvent": ["water", "chloroform", "methanol", "acetonitrile", "dichloromethane", "toluene", "hexane", "ethanol", "dmso", "thf"]
+      }
+    },
+    "empiricaldispersion": {
+      "template": "empiricaldispersion={type}",
+      "description": "Dispersion correction",
+      "defaults": {"type": "gd3"},
+      "options": {
+        "type": ["gd3", "gd3bj"]
+      }
+    },
+    "pop": {
+      "template": "pop={option}",
+      "description": "Population analysis",
+      "defaults": {"option": "full"},
+      "options": {
+        "option": ["full", "nbo", "chelpg", "mk", "esp", "npa", "mulliken", "hirshfeld"]
+      }
+    },
+    "geom": {
+      "template": "geom={option}",
+      "description": "Geometry options",
+      "defaults": {"option": "check"},
+      "options": {
+        "option": ["check", "modredundant", "addredundant", "connectivity", "print"]
+      }
+    },
+    "guess": {
+      "template": "guess={option}",
+      "description": "Initial guess",
+      "defaults": {"option": "read"},
+      "options": {
+        "option": ["read", "huckel", "cards", "mix", "alter"]
+      }
+    },
+    "scf": {
+      "template": "scf={option}",
+      "description": "SCF options",
+      "defaults": {"option": "tight"},
+      "options": {
+        "option": ["tight", "verytight", "xqc", "conver=8", "conver=9", "conver=10"]
+      }
+    }
+  },
+  
+  "compatibility_rules": {
+    "mutually_exclusive": [
+      ["opt", "td"],
+      ["opt", "cis"],
+      ["hf", "mp2"],
+      ["hf", "ccsd"]
+    ],
+    "requires": {
+      "td": ["dft_methods", "hf"],
+      "cis": ["hf"],
+      "empiricaldispersion": ["dft_methods"],
+      "scrf": ["dft_methods", "hf", "mp2", "ccsd"]
+    },
+    "recommended_with": {
+      "opt": ["freq"],
+      "td": ["pop=full"],
+      "scrf": ["empiricaldispersion"]
+    }
+  }
+}
